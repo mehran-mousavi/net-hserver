@@ -1,4 +1,0 @@
-FROM vpnhood/vpnhoodserver:latest
-
-RUN apk update
-
