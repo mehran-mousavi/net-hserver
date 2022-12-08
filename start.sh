@@ -6,64 +6,15 @@ packageUrl="https://github.com/vpnhood/VpnHood/releases/download/v2.4.321/VpnHoo
 versionTag="v2.4.321";
 destinationPath="/opt/VpnHoodServer";
 packageFile="";
-
-# Read arguments
-for i; 
-do
-arg=$i;
-if [ "$arg" = "-autostart" ]; then
-	autostart="y";
-	lastArg=""; continue;
-
-elif [ "$arg" = "-q" ]; then
-	quiet="y";
-	lastArg=""; continue;
-
-elif [ "$lastArg" = "-restBaseUrl" ]; then
-	restBaseUrl=$arg;
-	lastArg=""; continue;
-
-elif [ "$lastArg" = "-restAuthorization" ]; then
-	restAuthorization=$arg;
-	lastArg=""; continue;
-
-elif [ "$lastArg" = "-secret" ]; then
-	secret=$arg;
-	lastArg=""; continue;
-
-elif [ "$lastArg" = "-packageUrl" ]; then
-	packageUrl=$arg;
-	lastArg=""; continue;
-
-elif [ "$lastArg" = "-packageFile" ]; then
-	packageFile=$arg;
-	lastArg=""; continue;
-
-elif [ "$lastArg" = "-versionTag" ]; then
-	versionTag=$arg;
-	lastArg=""; continue;
+autostart="y";
+quiet="y";
 
 
-elif [ "$lastArg" != "" ]; then
-	echo "Unknown argument! argument: $lastArg";
-	exit 1;
-fi;
-lastArg=$arg;
-done;
 
-# validate $versionTag
-if [ "$versionTag" == "" ]; then
-	echo "Could not find versionTag!";
-	exit 1;
-fi
+
 binDir="$destinationPath/$versionTag";
 
-# User interaction
-if [ "$quiet" != "y" ]; then
-	if [ "$autostart" == "" ]; then
-		read -p "Auto Start (y/n)?" autostart;
-	fi;
-fi;
+
 
 # point to latest version if $packageUrl is not set
 if [ "$packageUrl" = "" ]; then
